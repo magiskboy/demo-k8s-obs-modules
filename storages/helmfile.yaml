@@ -1,0 +1,16 @@
+releases:
+  - name: cassandra
+    namespace: obs-storages
+    chart: oci://registry-1.docker.io/bitnamicharts/cassandra
+    createNamespace: true
+    values:
+    - ./cassandra.yaml.gotmpl
+    version: 12.1.3
+
+  - name: minio
+    namespace: obs-storages
+    createNamespace: true
+    chart: oci://registry-1.docker.io/bitnamicharts/minio
+    version: 15.0.3
+    values:
+    - ./minio.yaml.gotmpl

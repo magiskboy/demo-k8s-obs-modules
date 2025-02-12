@@ -1,0 +1,23 @@
+alertmanager:
+  enabled: false
+
+ruler:
+  enabled: false
+
+overrides_exporter:
+  enabled: false
+
+query_scheduler:
+  enabled: false
+
+config:
+  blocks_storage:
+    backend: s3
+    s3:
+      endpoint: minio.obs-storages.svc.cluster.local:9000
+      region: local
+      bucket_name: cortex
+      access_key_id: {{ env "CORTEX_S3_CLIENT_ID" }}
+      secret_access_key: {{ env "CORTEX_S3_CLIENT_SECRET" }}
+      insecure: true
+

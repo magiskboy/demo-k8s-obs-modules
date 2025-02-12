@@ -1,0 +1,5 @@
+helmfiles:
+  - ./plugins/helmfile.yaml
+  - ./storages/helmfile.yaml
+  - ./modules/helmfile.yaml
+  - ./ui/helmfile.yaml

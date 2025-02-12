@@ -1,0 +1,50 @@
+loki:
+  storage:
+    bucketNames:
+      chunks: loki-chunks
+      ruler: loki-ruler
+      admin: loki-admin
+
+    type: s3
+    object_store:
+      type: s3
+      s3:
+        endpoint: minio.obs-storages.svc.cluster.local:9000
+        region: local
+        access_key_id: {{ env "LOKI_S3_CLIENT_ID" }}
+        secret_access_key: {{ env "LOKI_S3_CLIENT_SECRET" }}
+        insecure: true
+    s3:
+      endpoint: minio.obs-storages.svc.cluster.local:9000
+      accessKeyId: {{ env "LOKI_S3_CLIENT_ID" }}
+      secretAccessKey: {{ env "LOKI_S3_CLIENT_SECRET" }}
+      s3ForcePathStyle: true
+      insecure: true
+
+  schemaConfig:
+    configs:
+        - from: 2025-02-12
+          store: tsdb
+          object_store: s3
+          schema: v13
+          index:
+            period: 24h
+          chunks:
+            period: 24h
+
+  auth_enabled: false
+
+write:
+  replicas: 2
+
+backend:
+  replicas: 2
+
+read:
+  replicas: 2
+
+gateway:
+  replicas: 2
+
+chunksCache:
+  allocatedMemory: 512

@@ -1,0 +1,117 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "datasource": {
+        "type": "jaeger",
+        "uid": "${tracing_datasource}"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 23,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "spanFilters": {
+          "criticalPathOnly": false,
+          "matchesOnly": false,
+          "serviceNameOperator": "=",
+          "spanNameOperator": "=",
+          "tags": [
+            {
+              "id": "54704a11-bca",
+              "operator": "="
+            }
+          ]
+        }
+      },
+      "pluginVersion": "11.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "jaeger",
+            "uid": "${tracing_datasource}"
+          },
+          "query": "3f01ff9f7944c81b6148817e87c9b19a",
+          "refId": "A"
+        }
+      ],
+      "title": " Trace",
+      "type": "traces"
+    }
+  ],
+  "preload": false,
+  "refresh": "",
+  "schemaVersion": 40,
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "jaeger",
+          "value": "dectoz5y9fj7kd"
+        },
+        "label": "Tracing datasource",
+        "name": "tracing_datasource",
+        "options": [],
+        "query": "jaeger",
+        "refresh": 1,
+        "regex": "",
+        "type": "datasource"
+      },
+      {
+        "current": {
+          "text": "3f01ff9f7944c81b6148817e87c9b19a",
+          "value": "3f01ff9f7944c81b6148817e87c9b19a"
+        },
+        "label": "Trace ID",
+        "name": "traceId",
+        "options": [
+          {
+            "selected": true,
+            "text": "3f01ff9f7944c81b6148817e87c9b19a",
+            "value": "3f01ff9f7944c81b6148817e87c9b19a"
+          }
+        ],
+        "query": "3f01ff9f7944c81b6148817e87c9b19a",
+        "type": "textbox"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Jaeger dashboard",
+  "uid": "bect05h6sm6tcd",
+  "version": 6,
+  "weekStart": ""
+}

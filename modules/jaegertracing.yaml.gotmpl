@@ -1,0 +1,22 @@
+provisionDataStore:
+  cassandra: false
+  elasticsearch: false
+  kafka: false
+
+storage:
+  type: cassandra
+  cassandra:
+    host: cassandra-headless.obs-storages.svc.cluster.local
+    port: 9042
+    user: {{ env "CASSANDRA_USER" }}
+    password: {{ env "CASSANDRA_PASSWORD" }}
+
+collector:
+  service:
+    otlp:
+      grpc:
+        name: otlp-grpc
+        port: 4317
+      http:
+        name: otlp-http
+        port: 4318

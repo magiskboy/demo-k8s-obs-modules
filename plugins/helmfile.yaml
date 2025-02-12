@@ -1,0 +1,13 @@
+repositories:
+  - name: stakater
+    url: https://stakater.github.io/stakater-charts
+
+releases:
+  - name: reloader
+    chart: stakater/reloader
+    createNamespace: true
+    namespace: obs-plugins
+    values:
+      - ./reloader.yaml
+    labels:
+      type: plugins

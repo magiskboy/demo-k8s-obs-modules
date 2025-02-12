@@ -1,0 +1,6 @@
+persistence:
+  enabled: false
+
+dbUser:
+  user: {{ env "CASSANDRA_USER" | default "cassandra" }}
+  password: {{ env "CASSANDRA_PASSWORD" }}
