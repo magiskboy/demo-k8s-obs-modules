@@ -1,16 +1,25 @@
+environments: 
+  default:
+    values:
+    - ../values.yaml
+---
 releases:
   - name: cassandra
-    namespace: obs-storages
+    namespace: obs-storage
     chart: oci://registry-1.docker.io/bitnamicharts/cassandra
     createNamespace: true
     values:
     - ./cassandra.yaml.gotmpl
     version: 12.1.3
+    labels:
+      layer: storage
 
   - name: minio
-    namespace: obs-storages
+    namespace: obs-storage
     createNamespace: true
     chart: oci://registry-1.docker.io/bitnamicharts/minio
     version: 15.0.3
     values:
     - ./minio.yaml.gotmpl
+    labels:
+      layer: storage

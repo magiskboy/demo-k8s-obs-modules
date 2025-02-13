@@ -1,0 +1,40 @@
+hooks:
+  - events: ["prepare"]
+    showlogs: true
+    command: bash
+    args:
+    - -c
+    - |
+      kubectl apply -f - <<EOF
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: onlineboutique
+        annotations:
+          linkerd.io/inject: enabled
+      EOF
+
+  - events: ["cleanup"]
+    showlogs: true
+    command: bash
+    args:
+    - -c
+    - |
+        namespace=onlineboutique
+        deployments=$(kubectl get deployments -o name -n ${namespace})
+
+        for deployment in $deployments; do
+            echo "patching ${deployment}"
+
+            service_name=$(echo $deployment | cut -d '/' -f 2)
+            env="ENABLE_TRACING=1 COLLECTOR_SERVICE_ADDR=jaegertracing-collector.obs-tracing.svc.cluster.local:4317 OTEL_SERVICE_NAME=${service_name}"
+
+            kubectl set env ${deployment} ${env} -n ${namespace}
+        done
+
+releases:
+  - name: onlineboutique
+    chart: oci://us-docker.pkg.dev/online-boutique-ci/charts/onlineboutique
+    version: 0.10.2
+    namespace: onlineboutique
+

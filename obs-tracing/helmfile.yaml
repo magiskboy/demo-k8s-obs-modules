@@ -1,0 +1,21 @@
+repositories:
+  - name: jaegertracing
+    url: https://jaegertracing.github.io/helm-charts
+
+environments: 
+  default:
+    values:
+    - ../values.yaml
+---
+
+releases:
+  - name: jaegertracing
+    chart: jaegertracing/jaeger
+    namespace: obs-tracing
+    createNamespace: true
+    version: 3.4.0
+    values:
+    - ./jaegertracing.yaml.gotmpl
+    labels:
+      layer: tracing
+

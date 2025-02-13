@@ -14,10 +14,10 @@ config:
   blocks_storage:
     backend: s3
     s3:
-      endpoint: minio.obs-storages.svc.cluster.local:9000
+      endpoint: minio.obs-storage.svc.cluster.local:9000
       region: local
       bucket_name: cortex
-      access_key_id: {{ env "CORTEX_S3_CLIENT_ID" }}
-      secret_access_key: {{ env "CORTEX_S3_CLIENT_SECRET" }}
+      access_key_id: {{ .Values.cortex_s3_client_id }}
+      secret_access_key: {{ .Values.cortex_s3_client_secret }}
       insecure: true
 

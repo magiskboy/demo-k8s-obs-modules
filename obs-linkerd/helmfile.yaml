@@ -1,0 +1,43 @@
+repositories:
+  - name: linkerd
+    url: https://helm.linkerd.io/stable
+
+releases:
+  - name: linkerd-crds
+    chart: linkerd/linkerd-crds
+    namespace: obs-linkerd
+    version: 1.8.0
+    createNamespace: true
+    labels:
+      layer: service-mesh
+
+  - name: linkerd-control-plane
+    chart: linkerd/linkerd-control-plane
+    namespace: obs-linkerd
+    version: 1.16.11
+    createNamespace: true
+    needs:
+    - linkerd-crds
+    set:
+      - name: identityTrustAnchorsPEM
+        file: ./ca/ca.crt
+      - name: identity.issuer.tls.crtPEM
+        file: ./ca/issuer.crt
+      - name: identity.issuer.tls.keyPEM
+        file: ./ca/issuer.key
+    values:
+      - ./linkerd-control-plane.yaml
+    labels:
+      layer: service-mesh
+
+  - name: linkerd-viz
+    chart: linkerd/linkerd-viz
+    namespace: obs-linkerd
+    createNamespace: true
+    version: 30.12.11
+    needs:
+    - linkerd-control-plane
+    values:
+      - ./linkerd-viz.yaml
+    labels:
+      layer: service-mesh

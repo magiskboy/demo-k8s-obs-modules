@@ -1,0 +1,6 @@
+persistence:
+  enabled: false
+
+dbUser:
+  user: {{ .Values.cassandra_user | default "cassandra" }}
+  password: {{ .Values.cassandra_password }}

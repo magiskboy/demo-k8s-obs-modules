@@ -1,0 +1,30 @@
+repositories:
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+
+environments: 
+  default:
+    values:
+    - ../values.yaml
+---
+
+releases:
+  - name: loki
+    chart: grafana/loki
+    version: 6.25.1
+    namespace: obs-log
+    createNamespace: true
+    values:
+    - ./loki.yaml.gotmpl
+    labels:
+      layer: log
+
+  - name: promtail
+    chart: grafana/promtail
+    version: 6.16.6
+    namespace: obs-log
+    createNamespace: true
+    values:
+    - ./promtail.yaml
+    labels:
+      layer: log

@@ -9,15 +9,15 @@ loki:
     object_store:
       type: s3
       s3:
-        endpoint: minio.obs-storages.svc.cluster.local:9000
+        endpoint: minio.obs-storage.svc.cluster.local:9000
         region: local
-        access_key_id: {{ env "LOKI_S3_CLIENT_ID" }}
-        secret_access_key: {{ env "LOKI_S3_CLIENT_SECRET" }}
+        access_key_id: {{ .Values.loki_s3_client_id }}
+        secret_access_key: {{ .Values.loki_s3_client_secret }}
         insecure: true
     s3:
-      endpoint: minio.obs-storages.svc.cluster.local:9000
-      accessKeyId: {{ env "LOKI_S3_CLIENT_ID" }}
-      secretAccessKey: {{ env "LOKI_S3_CLIENT_SECRET" }}
+      endpoint: minio.obs-storage.svc.cluster.local:9000
+      accessKeyId: {{ .Values.loki_s3_client_id }}
+      secretAccessKey: {{ .Values.loki_s3_client_secret }}
       s3ForcePathStyle: true
       insecure: true
 

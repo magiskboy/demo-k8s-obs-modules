@@ -4,12 +4,12 @@ provisionDataStore:
   kafka: false
 
 storage:
-  type: cassandra
+  type: "cassandra"
   cassandra:
-    host: cassandra-headless.obs-storages.svc.cluster.local
+    host: cassandra-headless.obs-storage.svc.cluster.local
     port: 9042
-    user: {{ env "CASSANDRA_USER" }}
-    password: {{ env "CASSANDRA_PASSWORD" }}
+    user: {{ .Values.cassandra_user }}
+    password: {{ .Values.cassandra_password }}
 
 collector:
   service:
@@ -20,3 +20,6 @@ collector:
       http:
         name: otlp-http
         port: 4318
+
+agent:
+  enabled: false

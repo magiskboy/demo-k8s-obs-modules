@@ -1,0 +1,15 @@
+minio_root_user: admin
+minio_root_password: 2E9SuIXsIv
+
+cassandra_user: cassandra
+cassandra_password: WrHPSjnqog
+
+grafana_admin_user: admin
+grafana_admin_password: admin
+
+loki_s3_client_id: k8T6htf04zvw57p7Ws6N
+loki_s3_client_secret: CsdAmhHR4AXIMfoPSQ3bdBL2jvKkMzvsWNyzzbip
+
+cortex_s3_client_id: eZsFtnUOp4D5UTRYKJHl
+cortex_s3_client_secret: KQlWCl3Qeb3ztms6YnPtwjRJieweRt5uf91Jt5kX
+

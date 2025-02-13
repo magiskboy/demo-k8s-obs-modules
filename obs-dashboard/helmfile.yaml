@@ -1,0 +1,19 @@
+repositories:
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+
+environments:
+  default:
+    values:
+      - ../values.yaml
+---
+
+releases:
+  - name: grafana
+    chart: grafana/grafana
+    namespace: obs-grafana
+    createNamespace: true
+    values:
+    - ./grafana.yaml.gotmpl
+    labels:
+      layer: dashboard

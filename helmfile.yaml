@@ -1,3 +1,12 @@
+environments: 
+  default:
+    values:
+    - ./values.yaml
+---
 helmfiles:
-  - ./storages/helmfile.yaml
-  - ./modules/helmfile.yaml
+  - ./obs-storage/helmfile.yaml
+  - ./obs-metric/helmfile.yaml
+  - ./obs-log/helmfile.yaml
+  - ./obs-linkerd/helmfile.yaml
+  - ./obs-tracing/helmfile.yaml
+  - ./obs-dashboard/helmfile.yaml

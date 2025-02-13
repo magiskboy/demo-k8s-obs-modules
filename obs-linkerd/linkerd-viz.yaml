@@ -1,0 +1,8 @@
+linkerdNamespace: obs-linkerd
+
+prometheus:
+  enabled: false
+
+prometheusUrl: http://cortex-nginx.obs-metric.svc.cluster.local/prometheus
+
+jaegerUrl: http://jaegertracing-query.obs-tracing.svc.cluster.local:16686

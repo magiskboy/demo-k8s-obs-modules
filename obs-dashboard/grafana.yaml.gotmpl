@@ -1,8 +1,8 @@
 persistence:
   enabled: true
 
-adminUser: {{ env "GRAFANA_ADMIN_USER" | default "admin" }}
-adminPassword: {{ env "GRAFANA_ADMIN_PASSWORD" }}
+adminUser: {{ .Values.grafana_admin_user | default "admin" }}
+adminPassword: {{ .Values.grafana_admin_password }}
 
 service:
   enabled: true
@@ -26,13 +26,13 @@ dashboards:
   default:
     node-exporter-dashboard:
       json: |
-        {{ readFile "../grafana-dashboards/k8s-node-exporter-dashboard.json" | nindent 8 }}
+        {{ readFile "./grafana-dashboards/k8s-node-exporter-dashboard.json" | nindent 8 }}
     k8s-deployment-dashboard:
       json: |
-        {{ readFile "../grafana-dashboards/k8s-deployment-dashboard.json" | nindent 8 }}
+        {{ readFile "./grafana-dashboards/k8s-deployment-dashboard.json" | nindent 8 }}
     jaeger-dashboard:
       json: |
-        {{ readFile "../grafana-dashboards/jaeger-dashboard.json" | nindent 8 }}
+        {{ readFile "./grafana-dashboards/jaeger-dashboard.json" | nindent 8 }}
 
 datasources:
   datasources.yaml:
@@ -40,7 +40,7 @@ datasources:
     datasources:
     - name: Prometheus
       type: prometheus
-      url: http://prometheus-server.obs-metric.svc.cluster.local
+      url: http://prometheus-kube-prometheus-prometheus.obs-metric.svc.cluster.local
       access: proxy
     - name: Cortex
       type: prometheus

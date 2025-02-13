@@ -1,0 +1,72 @@
+prometheus:
+  enabled: true
+
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: 'kubelet'
+        scrape_interval: 10s
+        metrics_path: /metrics/cadvisor
+        scheme: https
+        tls_config:
+          insecure_skip_verify: true
+        kubernetes_sd_configs:
+          - role: node
+        # https://github.com/prometheus-operator/prometheus-operator/issues/926#issuecomment-374781066
+        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+
+    remoteWrite:
+    - url: http://cortex-nginx.obs-metric.svc.cluster.local/api/v1/push
+
+    retention: "1h"
+    retentionSize: "2GB"
+
+    persistentVolume:
+      enabled: false
+
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+
+crds:
+  enabled: true
+
+kubeStateMetrics:
+  enabled: true
+
+nodeExporter:
+  enabled: true
+
+prometheusOperator:
+  enabled: true
+
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: false
+
+kubelet:
+  enabled: false
+
+kubeApiServer:
+  enabled: false
+
+kubeControllerManager:
+  enabled: false
+
+coreDns:
+  enabled: false
+
+kubeDns:
+  enabled: false
+
+kubeEtcd:
+  enabled: false
+
+kubeScheduler:
+  enabled: false
+
+kubeProxy:
+  enabled: false
+
+thanosRuler:
+  enabled: false

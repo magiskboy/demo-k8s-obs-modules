@@ -1,0 +1,13 @@
+prometheusUrl: http://cortex-nginx.obs-metric.svc.cluster.local/prometheus
+
+podMonitor:
+  enabled: true
+
+  controller:
+    enabled: true
+
+  serviceMirror:
+    enabled: true
+
+  proxy:
+    enabled: true
