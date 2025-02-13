@@ -6,7 +6,7 @@ server:
     enabled: false
 
   remoteWrite:
-    - url: http://cortex-nginx.obs-cortex.svc.cluster.local/api/v1/push
+    - url: http://cortex-nginx.obs-metric.svc.cluster.local/api/v1/push
 
 alertmanager:
   enabled: false

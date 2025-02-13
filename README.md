@@ -1,4 +1,4 @@
-# Demo observibility modules for Kubernetes
+# Demo observibility modules for Kubernetes - WIP
 
 ## Pre-requisites
 
@@ -11,6 +11,25 @@
 ![Diagram](./screenshots/obs-module-k8s-diagram.png)
 
 ## Usage
+
+Because we run k8s cluster locally so you should install local load balancer
+Kind has a built-in cloud provider controller locally and it also supports a load balacer with [cloud-provider-kind](https://github.com/kubernetes-sigs/cloud-provider-kind)
+
+```sh
+$ docker run -dit --name cloud-provider-kind --network kind -v /var/run/docker.sock:/var/run/docker.sock registry.k8s.io/cloud-provider-kind/cloud-controller-manager:v0.5.0
+```
+
+If you are using MacOS or Windows, because kind run as non-root user (run on VM) so you must map ports to host, let's enable `-enable-lb-port-mapping` when starting cloud-provider-kind
+
+```sh
+$ docker run -dit --name cloud-provider-kind --network kind -v /var/run/docker.sock:/var/run/docker.sock registry.k8s.io/cloud-provider-kind/cloud-controller-manager:v0.5.0 -enable-lb-port-mapping
+```
+
+In below picture, you can see that port mapping is enabled and you can access frontend service via port 50322 from host
+
+![Port mapping](./screenshots/local-lb-1.png)
+
+Read more about it [Port mapping](https://github.com/kubernetes-sigs/cloud-provider-kind?tab=readme-ov-file#enabling-load-balancer-port-mapping)
 
 Create a kind cluster, view more [kind config](./kind-cluster.yaml)
 
@@ -36,7 +55,7 @@ $ helm upgrade onlineboutique oci://us-docker.pkg.dev/online-boutique-ci/charts/
 $ bash ./onlineboutique-patch.sh
 ```
 
-Prepare secret values befor initializing observibility modules
+Prepare secret values before initializing observibility modules
 
 ```sh
 MINIO_ROOT_USER=
@@ -60,13 +79,6 @@ Run observibility modules
 ```sh
 $ helmfile apply
 ```
-
-You can add some datasources in grafana
-
-- prometheus: http://prometheus-server.obs-modules.svc.cluster.local
-- jaeger: http://jaegertracing-query.obs-modules.svc.cluster.local
-- loki: http://loki-read-headless.obs-modules.svc.cluster.local:3100
-- cortex: http://cortex-nginx.obs-cortex.svc.cluster.local/api/prom
 
 ### Notice!!!
 

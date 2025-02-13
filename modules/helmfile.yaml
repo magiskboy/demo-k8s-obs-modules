@@ -11,14 +11,14 @@ repositories:
 releases:
   - name: jaegertracing
     chart: jaegertracing/jaeger
-    namespace: obs-modules
+    namespace: obs-tracing
     createNamespace: true
     values:
     - ./jaegertracing.yaml.gotmpl
 
   - name: prometheus
     chart: prometheus-community/prometheus
-    namespace: obs-modules
+    namespace: obs-metric
     createNamespace: true
     values:
     - ./prometheus.yaml
@@ -26,7 +26,7 @@ releases:
   - name: loki
     chart: grafana/loki
     version: 6.25.1
-    namespace: obs-logs
+    namespace: obs-log
     createNamespace: true
     values:
     - ./loki.yaml.gotmpl
@@ -34,16 +34,23 @@ releases:
   - name: promtail
     chart: grafana/promtail
     version: 6.16.6
-    namespace: obs-logs
+    namespace: obs-log
     createNamespace: true
     values:
     - ./promtail.yaml
 
   - name: cortex
     chart: cortex-helm/cortex
-    namespace: obs-cortex
+    namespace: obs-metric
     createNamespace: true
     version: 2.5.0
     values:
     - ./cortex.yaml.gotmpl
+
+  - name: grafana
+    chart: grafana/grafana
+    namespace: obs-grafana
+    createNamespace: true
+    values:
+    - ./grafana.yaml.gotmpl
 

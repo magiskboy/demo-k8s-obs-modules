@@ -1370,7 +1370,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "cectoq27uj30gf"
+          "uid": "${metric_datasource}"
         },
         "definition": "",
         "includeAll": false,
@@ -1392,7 +1392,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "cectoq27uj30gf"
+          "uid": "${metric_datasource}"
         },
         "definition": "label_values(kube_deployment_metadata_generation{namespace=\"$namespace\"},deployment)",
         "includeAll": false,
@@ -1432,7 +1432,7 @@
         },
         "datasource": {
           "type": "loki",
-          "uid": "aectowtbp9szke"
+          "uid": "${log_datasource}"
         },
         "definition": "",
         "includeAll": true,
@@ -1459,6 +1459,6 @@
   "timezone": "browser",
   "title": "Kubernetes - Deployment",
   "uid": "ORYiYUzmk",
-  "version": 16,
+  "version": 3,
   "weekStart": ""
 }
