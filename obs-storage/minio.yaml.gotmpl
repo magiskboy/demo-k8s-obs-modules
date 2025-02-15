@@ -3,6 +3,4 @@ auth:
   rootPassword: {{ .Values.minio_root_password }}
 
 service:
-  type: LoadBalancer
-  externalTrafficPolicy: Local
-  loadBalancerIP: "127.0.01"
+  type: ClusterIP

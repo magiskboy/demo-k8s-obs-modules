@@ -1,0 +1,11 @@
+architecture: standalone
+
+auth:
+  enabled: false
+
+master:
+  persistence:
+    enabled: true
+  podAnnotations:
+    linkerd.io/inject: enabled
+    config.linkerd.io/opaque-ports: "6379"

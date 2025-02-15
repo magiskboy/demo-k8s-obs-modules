@@ -5,6 +5,8 @@ podMonitor:
 
   controller:
     enabled: true
+    namespaceSelector: |
+      matchNames: []
 
   serviceMirror:
     enabled: true

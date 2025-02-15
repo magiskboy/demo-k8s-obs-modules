@@ -6,8 +6,7 @@ adminPassword: {{ .Values.grafana_admin_password }}
 
 service:
   enabled: true
-  type: LoadBalancer
-  externalTrafficPolicy: Local
+  type: ClusterIP
 
 dashboardProviders:
   dashboardproviders.yaml:
@@ -33,15 +32,14 @@ dashboards:
     jaeger-dashboard:
       json: |
         {{ readFile "./grafana-dashboards/jaeger-dashboard.json" | nindent 8 }}
+    linkerd-dashboard:
+      json: |
+         {{ readFile "./grafana-dashboards/linkerd.json" | nindent 8 }}
 
 datasources:
   datasources.yaml:
     apiVersion: 1
     datasources:
-    - name: Prometheus
-      type: prometheus
-      url: http://prometheus-kube-prometheus-prometheus.obs-metric.svc.cluster.local
-      access: proxy
     - name: Cortex
       type: prometheus
       url: http://cortex-nginx.obs-metric.svc.cluster.local/api/prom
@@ -51,3 +49,7 @@ datasources:
     - name: Jaeger
       type: jaeger
       url: http://jaegertracing-query.obs-tracing.svc.cluster.local
+    - name: Prometheus
+      type: prometheus
+      url: http://prometheus-kube-prometheus-prometheus.obs-metric.svc.cluster.local:9090
+

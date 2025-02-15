@@ -40,4 +40,4 @@ releases:
     values:
       - ./linkerd-viz.yaml
     labels:
-      layer: service-mesh
+      layer: dashboard

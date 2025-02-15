@@ -11,6 +11,9 @@ query_scheduler:
   enabled: false
 
 config:
+  limits:
+    # keep this configured to false because we don't want to miss authority label in response_total metric of linkerd-proxy
+    enforce_metric_name: false
   blocks_storage:
     backend: s3
     s3:

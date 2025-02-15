@@ -17,7 +17,7 @@ prometheus:
     remoteWrite:
     - url: http://cortex-nginx.obs-metric.svc.cluster.local/api/v1/push
 
-    retention: "1h"
+    retention: "1d"
     retentionSize: "2GB"
 
     persistentVolume:

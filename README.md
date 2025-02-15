@@ -60,6 +60,13 @@ obs-module-worker          Ready    <none>          66s   v1.31.0
 obs-module-worker2         Ready    <none>          66s   v1.31.0
 ```
 
+Install calico CNI instead of kindetd, it supports network policy
+
+```sh 
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.2/manifests/custom-resources.yaml
+```
+
 ### 3. Install then onlineboutique system
 
 Install application namespace, this repo is using [demo-microservice](https://github.com/GoogleCloudPlatform/microservices-demo) repo of Google
@@ -102,6 +109,11 @@ After that, install cortex
 
 ```sh 
 helmfile apply -l name=cortex
+```
+
+Install CRDs of Linkerd
+```sh
+helmfile apply -l name=linkerd-crds
 ```
 
 Concurently, install log, metrics, tracing, service-mesh and dashboard

@@ -1,0 +1,50 @@
+fullnameOverride: "emailservice"
+
+image:
+  registry: us-central1-docker.pkg.dev
+  repository: google-samples/microservices-demo/emailservice
+  tag: "v0.10.2"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+networkPolicy:
+  enabled: true
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app.kubernetes.io/instance: checkoutservice
+    ports:
+     - port: 8080
+       protocol: TCP
+
+env:
+  - name: COLLECTOR_SERVICE_ADDR
+    value: "jaegertracing-collector.obs-tracing.svc.cluster.local:4317"
+  - name: ENABLE_TRACING
+    value: "1"
+  - name: OTEL_SERVICE_NAME
+    value: "emailservice"
+  - name: DISABLE_PROFILER
+    value: "1"
+  - name: REDIS_ADDR
+    value: "redis-headless:6379"
+
+service:
+  type: ClusterIP
+  port: 8080
+  portName: grpc
+
+readinessProbe:
+  grpc:
+    port: 8080
+
+livenessProbe:
+  grpc:
+    port: 8080
