@@ -134,8 +134,6 @@ Have some configuration what I haven't set up yet. You can learn more about Kube
 ![Cluster metrics](./screenshots/obs-2.png)
 ![Tracing](./screenshots/obs-3.png)
 ![Tracing with Jaeger UI](./screenshots/obs-4.png)
-![Service mesh 1](./screenshots/sm-1.png)
-![Service mesh 2](./screenshots/sm-2.png)
 ![Service mesh 3](./screenshots/sm-3.png)
 ![Service mesh 4](./screenshots/sm-4.png)
 
