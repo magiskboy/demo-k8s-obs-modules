@@ -34,7 +34,7 @@ dashboards:
         {{ readFile "./grafana-dashboards/jaeger-dashboard.json" | nindent 8 }}
     linkerd-dashboard:
       json: |
-         {{ readFile "./grafana-dashboards/linkerd.json" | nindent 8 }}
+        {{ readFile "./grafana-dashboards/linkerd.json" | nindent 8 }}
 
 datasources:
   datasources.yaml:

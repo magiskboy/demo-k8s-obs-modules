@@ -13,7 +13,7 @@ query_scheduler:
 config:
   limits:
     # keep this configured to false because we don't want to miss authority label in response_total metric of linkerd-proxy
-    enforce_metric_name: false
+    max_label_names_per_series: 50
   blocks_storage:
     backend: s3
     s3:
