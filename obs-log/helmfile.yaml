@@ -19,12 +19,12 @@ releases:
     labels:
       layer: log
 
-  - name: promtail
-    chart: grafana/promtail
-    version: 6.16.6
+  - name: alloy
+    chart: grafana/alloy
+    version: 0.11.0
     namespace: obs-log
     createNamespace: true
     values:
-    - ./promtail.yaml
+    - ./alloy.yaml
     labels:
       layer: log

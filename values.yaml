@@ -7,9 +7,9 @@ cassandra_password: WrHPSjnqog
 grafana_admin_user: admin
 grafana_admin_password: admin
 
-loki_s3_client_id: lG1aECemDEh8LdgWMpVm
-loki_s3_client_secret: hpMDAYEbQGDNh3kDk4P3thfasODPlFJJXcX35jfb
+loki_s3_client_id: Ni00FSL4uJg3awInpGxa
+loki_s3_client_secret: wncF3OIoDq8Cl3aUz2h5wTyEHF7g8Li15x2gwT04
 
-cortex_s3_client_id: pLbyiu5crMRrmTTEK6q9
-cortex_s3_client_secret: JyvQixJqQnCsCcDeWaFuSKSqS8fVWpSTrOylsQro
+cortex_s3_client_id: Ni00FSL4uJg3awInpGxa
+cortex_s3_client_secret: wncF3OIoDq8Cl3aUz2h5wTyEHF7g8Li15x2gwT04
 
