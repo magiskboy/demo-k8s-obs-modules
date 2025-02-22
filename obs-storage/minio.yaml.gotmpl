@@ -4,3 +4,10 @@ auth:
 
 service:
   type: ClusterIP
+
+provisioning:
+  buckets:
+  - name: loki-chunks
+  - name: loki-admin
+  - name: loki-ruler
+  - name: cortex
