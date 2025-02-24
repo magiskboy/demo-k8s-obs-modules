@@ -30,33 +30,28 @@ spec:
       serviceAccountName: {{ include "backend.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.initContainers }}
       initContainers:
-      {{- $env := .Values.env -}}
-      {{- range .Values.initContainers }}
+        {{ $global := .Values }}
+        {{- range .Values.initContainers }}
         - name: {{ .name }}
-          command:
-            {{- toYaml .command | nindent 12 }}
-          env: 
-            {{- toYaml $env | nindent 12 }}
-
-          {{- if ne .image "" }}
+          {{- if .image }}
           image: {{ .image }}
           {{- else }}
-          image: {{ .Values.image.registry | default "docker.io" }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+          image: "{{ $global.image.registry | default "docker.io" }}/{{ $global.image.repository }}:{{ $global.image.tag }}"
           {{- end }}
-          {{- if ne .imagePullPolicy "" }}
-          imagePullPolicy: {{ .imagePullPolicy }}
-          {{- end }}
-          {{- if ne .resources "" }}
-          resources:
-            {{- toYaml .resources | nindent 12 }}
-          {{- end }}
-          {{- if ne .volumeMounts "" }}
+          command:
+            {{- toYaml .command | nindent 12 }}
+          args:
+            {{- toYaml .args | nindent 12 }}
+          env:
+            {{- if .env }}
+            {{- toYaml .env | nindent 12 }}
+            {{- end }}
+            {{- toYaml $global.env | nindent 12 }}
           volumeMounts:
             {{- toYaml .volumeMounts | nindent 12 }}
-          {{- end }}
-
-
+        {{- end }}
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
